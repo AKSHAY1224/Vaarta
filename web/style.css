@@ -1,0 +1,225 @@
+/* Vaarta web UI. A royal palette: purples, blues and gold, with a touch of
+   burgundy and emerald. No external fonts or files, so it works fully offline. */
+
+:root {
+  /* purples */
+  --indigo-900: #0b0a2e;
+  --indigo-700: #1a1446;
+  --purple-800: #2e0f4f;
+  --purple-600: #4b1d82;
+  --royal-purple: #6a0dad;
+  --amethyst: #9d4edd;
+  --lilac: #c8a2ff;
+  /* blues */
+  --royal-blue: #2949b8;
+  --sapphire: #3d6be6;
+  --sky: #8fb3ff;
+  /* gold and accents */
+  --gold-dark: #b8860b;
+  --gold: #d4af37;
+  --gold-light: #f1c40f;
+  --burgundy: #800020;
+  --ruby: #c0392b;
+  --emerald: #1b998b;
+  /* text */
+  --ivory: #f7f2e8;
+  --ivory-dim: #cfc6d9;
+  --ink: #140a24;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+
+body {
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--ivory);
+  background:
+    radial-gradient(900px 500px at 10% -10%, rgba(61, 107, 230, .35), transparent 60%),
+    radial-gradient(700px 500px at 100% 0%, rgba(157, 78, 221, .35), transparent 60%),
+    radial-gradient(600px 400px at 50% 110%, rgba(212, 175, 55, .28), transparent 60%),
+    linear-gradient(160deg, var(--indigo-900), var(--indigo-700) 45%, var(--purple-800));
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+}
+
+.app {
+  width: min(900px, 100%);
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+}
+
+/* ---------- header ---------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(75, 29, 130, .85), rgba(30, 58, 138, .85));
+  border: 1px solid rgba(212, 175, 55, .35);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .35), inset 0 1px 0 rgba(255, 255, 255, .08);
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.logo {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: grid; place-items: center;
+  font-family: "Nirmala UI", "Segoe UI", sans-serif;
+  font-size: 24px; font-weight: 700;
+  color: var(--ink);
+  background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
+  box-shadow: 0 4px 14px rgba(212, 175, 55, .45);
+}
+h1 {
+  margin: 0;
+  font-size: 20px;
+  letter-spacing: .3px;
+  background: linear-gradient(90deg, var(--gold-light), var(--gold), var(--lilac));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.devanagari { font-family: "Nirmala UI", "Mangal", sans-serif; font-weight: 500; }
+.tagline { margin: 2px 0 0; font-size: 12.5px; color: var(--ivory-dim); }
+
+.status { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--ivory-dim); white-space: nowrap; }
+.dot { width: 10px; height: 10px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 3px rgba(212, 175, 55, .2); }
+.dot.ok { background: var(--emerald); box-shadow: 0 0 0 3px rgba(27, 153, 139, .25); }
+.dot.bad { background: var(--ruby); box-shadow: 0 0 0 3px rgba(192, 57, 43, .25); }
+#new-chat {
+  margin-left: 6px;
+  padding: 7px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--amethyst);
+  background: rgba(157, 78, 221, .15);
+  color: var(--lilac);
+  font: inherit; font-size: 13px;
+  cursor: pointer;
+}
+#new-chat:hover { background: var(--royal-purple); color: var(--ivory); }
+#new-chat:disabled { opacity: .55; cursor: wait; }
+
+/* ---------- conversation ---------- */
+.chat {
+  flex: 1;
+  overflow-y: auto;
+  padding: 18px;
+  border-radius: 18px;
+  background:
+    radial-gradient(600px 260px at 50% 0%, rgba(157, 78, 221, .14), transparent 70%),
+    linear-gradient(180deg, rgba(26, 20, 70, .7), rgba(46, 15, 79, .55));
+  border: 1px solid rgba(157, 78, 221, .25);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  scroll-behavior: smooth;
+}
+.chat::-webkit-scrollbar { width: 8px; }
+.chat::-webkit-scrollbar-thumb { background: var(--purple-600); border-radius: 8px; }
+
+.empty { margin: auto; text-align: center; color: var(--ivory-dim); max-width: 520px; }
+.empty[hidden] { display: none; }
+.empty h2 { margin: 0 0 6px; font-weight: 600; color: var(--lilac); }
+.empty p { margin: 0; line-height: 1.5; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 16px; }
+.chip {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--amethyst);
+  background: rgba(157, 78, 221, .12);
+  color: var(--lilac);
+  font: inherit; font-size: 13px;
+  cursor: pointer;
+}
+.chip:hover { background: var(--royal-purple); color: var(--ivory); }
+
+.msg { display: flex; flex-direction: column; max-width: 78%; animation: rise .25s ease-out; }
+.msg.user { align-self: flex-end; align-items: flex-end; }
+.msg.assistant, .msg.error { align-self: flex-start; }
+.who { margin: 0 6px 4px; font-size: 11.5px; letter-spacing: .4px; text-transform: uppercase; color: var(--ivory-dim); }
+.msg.user .who { color: var(--sky); }
+.msg.assistant .who { color: var(--gold); }
+.msg.error .who { color: #ff9b9b; }
+
+.bubble {
+  padding: 12px 16px;
+  border-radius: 16px;
+  font-size: 15px;
+  line-height: 1.5;
+  white-space: pre-wrap;      /* keep the model's line breaks */
+  overflow-wrap: anywhere;    /* never overflow on long words or links */
+}
+.msg.user .bubble {
+  background: linear-gradient(135deg, var(--royal-blue), var(--sapphire));
+  color: #fff;
+  border-bottom-right-radius: 6px;
+  box-shadow: 0 6px 18px rgba(41, 73, 184, .35);
+}
+.msg.assistant .bubble {
+  background: linear-gradient(135deg, rgba(75, 29, 130, .9), rgba(106, 13, 173, .75));
+  border: 1px solid rgba(200, 162, 255, .25);
+  color: var(--ivory);
+  border-bottom-left-radius: 6px;
+  box-shadow: 0 6px 18px rgba(106, 13, 173, .3);
+}
+.msg.error .bubble {
+  background: linear-gradient(135deg, var(--burgundy), var(--ruby));
+  color: #fff;
+}
+
+/* three pulsing dots while waiting for the first token */
+.bubble.thinking::after {
+  content: "\25CF \25CF \25CF";
+  letter-spacing: 4px;
+  color: var(--lilac);
+  animation: pulse 1.2s infinite;
+}
+
+/* ---------- composer ---------- */
+.composer {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(30, 58, 138, .8), rgba(75, 29, 130, .8));
+  border: 1px solid rgba(212, 175, 55, .3);
+}
+textarea {
+  flex: 1;
+  resize: none;
+  border: none;
+  outline: none;
+  border-radius: 12px;
+  padding: 12px 14px;
+  max-height: 160px;
+  background: rgba(7, 26, 74, .55);
+  color: var(--ivory);
+  font: inherit; font-size: 15px;
+}
+textarea:focus { box-shadow: 0 0 0 2px var(--amethyst); }
+textarea::placeholder { color: rgba(207, 198, 217, .8); }
+#send {
+  padding: 0 22px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  color: var(--ink);
+  font: inherit; font-size: 15px; font-weight: 700;
+  cursor: pointer;
+}
+#send:hover { filter: brightness(1.08); }
+#send:disabled { opacity: .55; cursor: wait; }
+
+@keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes pulse { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
+
+@media (max-width: 600px) {
+  .app { padding: 8px; gap: 8px; }
+  .msg { max-width: 92%; }
+  .tagline, #status-text { display: none; }
+}

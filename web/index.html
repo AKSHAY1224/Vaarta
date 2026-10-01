@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vaarta</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo" aria-hidden="true">व</span>
+        <div>
+          <h1>Vaarta <span class="devanagari">वार्ता</span></h1>
+          <p class="tagline">Runs offline on this laptop. Nothing you type leaves the machine.</p>
+        </div>
+      </div>
+      <div class="status">
+        <span class="dot" id="status-dot"></span>
+        <span id="status-text">connecting</span>
+        <button id="new-chat" type="button">New chat</button>
+      </div>
+    </header>
+
+    <!-- app.js adds one .msg block here per turn -->
+    <section class="chat" id="chat" aria-live="polite">
+      <div class="empty" id="empty">
+        <h2>Namaste.</h2>
+        <p>Ask anything. The whole conversation is kept in your browser and sent to the model on each turn. Enter sends, Shift+Enter adds a line.</p>
+        <div class="chips">
+          <button class="chip" type="button">What does your name mean?</button>
+          <button class="chip" type="button">Is anything I type sent to the internet?</button>
+          <button class="chip" type="button">How do you remember what I said?</button>
+        </div>
+      </div>
+    </section>
+
+    <form class="composer" id="composer">
+      <textarea id="input" rows="1" placeholder="Type a message" autocomplete="off"></textarea>
+      <button id="send" type="submit">Send</button>
+    </form>
+
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
